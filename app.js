@@ -15,6 +15,7 @@ var multer     = require('multer');
 
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
+var request_databaseDB_1 = require('./public/database')
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -31,6 +32,7 @@ app.use(session({ secret: 'this is the secret' }));
 app.use(multer());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/database', request_databaseDB_1);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -90,5 +92,5 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
-var request_databaseDB_1 = require('./public/database')
-app.use('/database', request_databaseDB_1);
+
+
